@@ -22,13 +22,15 @@ public class Lathe implements Equipment {
 	public void switchON() {
 		this.isON = true;
 		counter = new Thread(() -> {
-			try {
-				Thread.sleep(3600000)
-				this.lastMaintainedHours++;
-			} catch (InterruptedException e) {
-				System.out.println("Lathe " + this.id + " stopped")
+			while (isON) {
+				try {
+					Thread.sleep(3600000)
+					this.lastMaintainedHours++;
+				} catch (InterruptedException e) {
+					System.out.println("Lathe " + this.id + " stopped")
+				}
 			}
-		})
+		});
 		counter.start();
 	}
 
@@ -52,13 +54,15 @@ public class Miller implements Equipment {
 	public void switchON() {
 		this.isON = true;
 		counter = new Thread(() -> {
-			try {
-				Thread.sleep(3600000)
-				this.lastMaintainedHours++;
-			} catch (InterruptedException e) {
-				System.out.println("Miller " + this.id + "stopped")
+			while (isON) {
+				try {
+					Thread.sleep(3600000)
+					this.lastMaintainedHours++;
+				} catch (InterruptedException e) {
+					System.out.println("Miller " + this.id + "stopped")
+				}
 			}
-		})
+		});
 		counter.start();
 	}
 
